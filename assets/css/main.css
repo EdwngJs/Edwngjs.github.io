@@ -6,7 +6,29 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+.services {
+	display: flex;
+	flex-wrap: wrap; /* Wrap items for mobile view */
+	justify-content: center; /* Center items horizontally */
+	margin-top: 10px;
+}
 
+.service {
+	width: 90%; /* Adjusted width for mobile view */
+	max-width: 300px; /* Limit maximum width */
+	margin: 0 0 10px 0; /* Add margin between services */
+	padding: 20px;
+	text-align: center;
+}
+
+.service p {
+	font-style: italic;
+}
+
+.service.icon {
+	font-size: 60px;
+
+}
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
