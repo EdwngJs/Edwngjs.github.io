@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Edwing Jimenez Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<h1 style="font-size: 42px;"><strong>E-commerce Sales Analysis</strong></h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+					<h2><strong>Dataset</strong></h2>
+					<p>This is a transnational data set which contains all the transactions occurring between 01/12/2010 and 09/12/2011 for a UK-based and registered non-store online retail. The company mainly sells unique all-occasion gifts. Many customers of the company are wholesalers. 
+					 The <a href="https://www.kaggle.com/datasets/carrie1/ecommerce-data/data">dataset</a> is available on Kaggle.
+					
+
+					<h2><strong>Objective</strong></h2>
+					<p>The main goal in this project is to perform some exploratory data analysis and answer some business questions.</p>
+					
+					<h2><strong>Task</strong></h2>
+					<p><ol><li>Exploring the dataset.</li>
+					<li>Perform data transformation for further analysis.</li>
+					<li>Answer business questions using the data.</li>
+					</li>
+				</ol>	
+				</p>
+					
+					<h2><strong>Action</strong></h2>
+				<iframe src="assets\notebooks\eCommerce Sales Analysis.html" width="100%" height="1000"></iframe>
+
+
+					<h2><strong>Results</strong></h2>
+					<p>
+
+At first glance, we observed the following anomalies:
+<li>Unusual quantities (-80995.0 , 80995.0) and unit prices (-11062.06, 0, 38970.0) values.
+<li>Inconsistency in Stockcodes (DOT, POST)
+<li>Missing CustomerIDs.
+<li>Different / missing descriptions for same StockCode.
+<li>Weird transactions for CustomerID 15098. However, most of these seem to be caused by entry errors and new records were created to adjust them. Negative quantity values could be a 'return transaction' in which the item was returned. We could go deeper to identify more anomalies but let's keep it simple. Therefore, those records with null values could be deleted for the analysis.
+</li></p>
+<h3>Business Questions</h3>
+<h4>Who are the top 10 customers by revenue?</h4>
+<div>
+	<style scoped>
+		.dataframe tbody tr th:only-of-type {
+			vertical-align: middle;
+		}
+	
+		.dataframe tbody tr th {
+			vertical-align: top;
+		}
+	
+		.dataframe thead th {
+			text-align: right;
+		}
+	</style>
+	<table border="1" class="dataframe">
+	  <thead>
+		<tr style="text-align: right;">
+		  <th></th>
+		  <th>CustomerID</th>
+		  <th>Revenue</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr>
+		  <th>0</th>
+		  <td>17841</td>
+		  <td>111515.56</td>
+		</tr>
+		<tr>
+		  <th>1</th>
+		  <td>14911</td>
+		  <td>90367.34</td>
+		</tr>
+		<tr>
+		  <th>2</th>
+		  <td>12748</td>
+		  <td>50765.69</td>
+		</tr>
+		<tr>
+		  <th>3</th>
+		  <td>14606</td>
+		  <td>45384.35</td>
+		</tr>
+		<tr>
+		  <th>4</th>
+		  <td>15005</td>
+		  <td>40797.10</td>
+		</tr>
+		<tr>
+		  <th>5</th>
+		  <td>15311</td>
+		  <td>37508.36</td>
+		</tr>
+		<tr>
+		  <th>6</th>
+		  <td>14096</td>
+		  <td>36822.34</td>
+		</tr>
+		<tr>
+		  <th>7</th>
+		  <td>14646</td>
+		  <td>29499.12</td>
+		</tr>
+		<tr>
+		  <th>8</th>
+		  <td>13263</td>
+		  <td>28908.25</td>
+		</tr>
+		<tr>
+		  <th>9</th>
+		  <td>12428</td>
+		  <td>28862.47</td>
+		</tr>
+	  </tbody>
+	</table>
+	</div>
+
+	<h4>What is the average order value?</h4>
+	20.40
+<p>
+	<h4>Are there seasonal trends in customer purchases? For example, do customers buy more during the holiday season?</h4>
+	There is not a strong trend to determine whether customers purchase more on Holiday season. However, Q4 has the highest revenue. The month with more transactions is November '21.
+<p>
+	<h4>Which products generate the most revenue, and which are the least profitable?</h4>
+	The stock codes '22423' and '85123A' generate the most revenue whilst codes '79323W' and '22769' the least. We should check the reason why it is generating losses to the company.
+<p>
+	<h4>What is the distribution of product prices, and how does it impact sales volume?</h4>
+Lower cost products (USD$ 1.25 - 3.75) sell the most. Low prices is likely to be a decisive factor of acquiring a product. Products with prices above USD$10 have less than 10k unit solds per year.
+
+There are products that have a price of USD$0 (Free). It would be interesting to know the reason behind this since there are many high volume transactions as Free.
+<p>
+	<h4>How do monthly revenues compare? Are there specific months with a spike or drop in sales?</h4>
+	Sales volume tends to increase over time. April has the lowest revenue recorded whilst November the highest. Seems that during Q4 sales increase due to Winter / Holiday season.
+<p>
+	<h4>What is the total sales revenue for the company during the dataset's timeframe?</h4>
+	$8,300,065.81
+<p>	
+	<h4>How does sales performance vary across countries?</h4>
+	United Kingdom has the most amount of transactions (sales).
+<p>
+	<h4>Identify patterns in transaction dates and times to determine the busiest sales periods.</h4>
+	The busiest day of the week is Thursday. 12 - 1 PM seems to be the busiest hours.
+</p>
+					</section>
+
+			</div>
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/edwngjs" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/edwngjs/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="mailto:edwingx@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Edwing Jimenez</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
