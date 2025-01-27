@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Edwing Jimenez Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<h1 style="font-size: 42px;"><strong>Product Performance Dashboard</strong></h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+					<h2><strong>Dataset</strong></h2>
+					<p>This is a transnational data set from a SQL database which contains all the transactions for a retail store. The company mainly sells audio devices such as headphones, microphones and audio interfaces. 
+					
+
+					<h2><strong>Objective</strong></h2>
+					<p>The main goal in this project is retrieve the data from the SQL database, perform some transformations and create a product performance dashboard in Power BI.</p>
+					
+					<h2><strong>Task</strong></h2>
+					<p><ol><li>Create a database.</li>
+					<li>Write SQL queries and perform data transformation.</li>
+					<li>Connect data to Power BI.
+					<li>Create a dashboard with the following:</li>	<ul><li> Revenue by Country: Top performing regions with corresponding revenue.
+<li>Revenue by Date and Year: Comparative trends.
+<li>Profit and Unit Sales Year-over-Year (YoY) change: High-level summary of YoY growth.
+<li>Revenue breakdown by discount band: Distribution of revenue across different discount categories.
+</li></ul>
+
+</p>
+					
+					<h2><strong>Action</strong></h2>
+					SQL Query:
+				<pre><code>WITH producttable as (select a.Product_ID,
+					a.Product,
+					a.Category,
+					a.Cost_Price,
+					a.Sale_Price,
+					a.Brand,
+					a.Description,
+					a.Image_url,
+					b.Date,
+					b.Customer_Type,
+					b.Country,
+					b.Discount_Band,
+					b.Units_Sold,
+					(Sale_Price*Units_Sold) as revenue, 
+					(Cost_Price*Units_Sold) as total_costs,
+					format(Date, 'MMMM') as month,
+					format(Date, 'yyyy') as year
+				from Product_data a
+				join product_sales b
+				on a.Product_ID = b.Product)
+				
+				Select *, (1-Discount*1.0 / 100) * revenue as discount_revenue from producttable p
+				join discount_data c
+				on p.Discount_Band = c.Discount_Band AND p.month = c.Month</code></pre>
+
+
+					<h2><strong>Results</strong></h2>
+					<p> <iframe title="product sales dashboard" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiYjEyMTE4YzAtZTcyOC00MGNkLTkyNzktMGJjMjE4NTE1NDgyIiwidCI6IjgzMTI4ZWYxLWQyZDgtNDVhMS05NTlmLTc0MzliMTMyYTNlYSIsImMiOjJ9" frameborder="0" allowFullScreen="true"></iframe>
+
+
+					</section>
+
+			</div>
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/edwngjs" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/edwngjs/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="mailto:edwingx@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Edwing Jimenez</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
